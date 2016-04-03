@@ -1,0 +1,10 @@
+flask
+flask-login
+flask-mail
+flask-sqlalchemy
+sqlalchemy-migrate
+flask-whooshalchemy
+flipflop
+Flask-WTF
+#psutil
+#flask-table
