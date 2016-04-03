@@ -4,14 +4,19 @@ import serial
 Temp = namedtuple('Temp', 'temperature units')
 
 def readtemp(port=None):
-    # expects value like 00.00\r\n
+    # expects value like b'C30.00\r\n'
+    # C = units
     if port:
         with serial.Serial(port) as s:
-            return Temp(s.readline().decode('utf-8').strip(),
-                        'CELSIUS')
+            data = s.readline().decode('utf-8')
+            while not data.startswith('C'):
+                data = s.readline().decode('utf-8')
+            data = data.strip()
+            return Temp(data[1:],
+                        'CELSIUS' if data[0] == 'C' else 'FAHRENHEIT')
 
 def main():
-    port = '/dev/ttyACM0'
+    port = '/dev/ttyACM1'
     while True:
         t = readtemp(port=port)
         print('{temp} degrees {units}'.format(temp=t.temperature,

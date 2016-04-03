@@ -7,7 +7,7 @@ from readtemp import readtemp
 @app.route('/')
 @app.route('/index')
 def index():
-    temp = readtemp('/dev/ttyACM0')
+    temp = readtemp('/dev/ttyACM1')
     return render_template('home.html',
                            temperature=temp.temperature,
                            units=temp.units.lower())
