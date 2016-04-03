@@ -2,7 +2,7 @@ import datetime as dt
 from flask import render_template
 import platform
 from app import app
-from readtemp import readtemp, readtemp2
+from readtemp import readtemp
 
 @app.route('/')
 @app.route('/index')
